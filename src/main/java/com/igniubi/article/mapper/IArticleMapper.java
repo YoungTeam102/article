@@ -5,7 +5,7 @@ import com.igniubi.mybatis.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 
-public interface  IArticleMapper extends BaseMapper<Integer, Article> {
+public interface IArticleMapper extends BaseMapper<Integer, Article> {
 
     @Override
      int save(Article var1);

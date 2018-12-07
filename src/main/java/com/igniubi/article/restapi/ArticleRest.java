@@ -1,6 +1,5 @@
 package com.igniubi.article.restapi;
 
-import com.igniubi.article.model.Article;
 import com.igniubi.article.service.IArticleService;
 import com.igniubi.model.CommonRsp;
 import com.igniubi.model.article.req.ArticleReq;
