@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableEurekaClient
 @SpringBootApplication
 @ComponentScan(basePackages = "com.igniubi")
-@MapperScan(basePackages = "com.igniubi.article.mapper")
 public class ArticleApplication {
 
     public static void main(String[] args) {
