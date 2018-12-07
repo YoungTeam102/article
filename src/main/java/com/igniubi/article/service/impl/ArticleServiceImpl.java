@@ -26,7 +26,7 @@ public class ArticleServiceImpl implements IArticleService {
     public CommonRsp addArticle(ArticleReq req) {
         logger.info("enter addArticle , req is {}", req);
         CommonRsp rsp = new CommonRsp();
-        if(req == null){
+        if(req.getTitle()== null){
             logger.info("addArticle , req is null");
             throw new IGNBException(402, "req is null");
         }
@@ -37,6 +37,8 @@ public class ArticleServiceImpl implements IArticleService {
            throw new IGNBException(402, "article is exist");
         }
         article = BeanUtils.copyBeans(Article.class , req);
+        article.setDateId(date);
+        article.setCreateTime(DateUtil.getCurrentTimeSeconds());
         try{
             articleMapper.insertArticleSelective(article);
             logger.info("addArticle success , req is {}", req);
