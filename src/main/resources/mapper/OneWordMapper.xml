@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.igniubi.article.mapper.IOneWordMapper">
+    <resultMap id="BaseMap" type="com.igniubi.article.model.OneWord">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="img_src" column="imgSrc" jdbcType="VARCHAR"/>
+        <result property="word" column="word" jdbcType="VARCHAR"/>
+        <result property="date_id" column="dateId" jdbcType="VARCHAR"/>
+        <result property="create_time" column="createTime" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, img_src, word, date_id, create_time
+  </sql>
+
+    <select id="get" resultMap="BaseMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM one_word
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectWordByDate" resultMap="BaseMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM one_word
+        where date_id = #{dateId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.OneWord">
+        insert into one_word(img_src, word, date_id,create_time)
+          values (#{imgSrc,jdbcType=VARCHAR}, #{word,jdbcType=VARCHAR},#{dateId,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertWordSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.OneWord">
+        insert into one_word
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="imgSrc != null">
+                img_src,
+            </if>
+            <if test="word != null">
+                word,
+            </if>
+            <if test="dateId != null">
+                date_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="imgSrc != null">
+                #{imgSrc,jdbcType=VARCHAR},
+            </if>
+            <if test="word != null">
+                #{word,jdbcType=VARCHAR},
+            </if>
+            <if test="dateId != null">
+                #{dateId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+
+</mapper>
