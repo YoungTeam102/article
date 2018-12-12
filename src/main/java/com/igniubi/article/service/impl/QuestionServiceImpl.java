@@ -1,5 +1,6 @@
 package com.igniubi.article.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.igniubi.article.mapper.IQuestionMapper;
 import com.igniubi.article.model.Question;
 import com.igniubi.article.restapi.ArticleRest;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class QuestionServiceImpl implements IQuestionService {
 
-    private final Logger logger = LoggerFactory.getLogger(ArticleRest.class);
+    private final Logger logger = LoggerFactory.getLogger(QuestionServiceImpl.class);
 
     @Autowired
     IQuestionMapper questionMapper;
@@ -37,7 +38,7 @@ public class QuestionServiceImpl implements IQuestionService {
            throw new IGNBException(402, "article is exist");
         }
         question = BeanUtils.copyBeans(Question.class , req);
-        question.setAnswers(req.getAnswers() == null ? "" : req.getAnswers().toString());
+        question.setAnswers(req.getAnswers() == null ? "" : JSON.toJSONString(req.getAnswers()));
         question.setDateId(date);
         question.setCreateTime(DateUtil.getCurrentTimeSeconds());
         try{

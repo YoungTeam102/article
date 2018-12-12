@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.igniubi.article.mapper.IFilmMapper">
+    <resultMap id="BaseMap" type="com.igniubi.article.model.Film">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="author" column="author" jdbcType="VARCHAR"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="content_title" column="contentTitle" jdbcType="VARCHAR"/>
+        <result property="content_subtitle" column="contentSubtitle" jdbcType="VARCHAR"/>
+        <result property="img_url" column="imgUrl" jdbcType="VARCHAR"/>
+        <result property="forward" column="forward" jdbcType="VARCHAR"/>
+        <result property="date_id" column="dateId" jdbcType="VARCHAR"/>
+        <result property="create_time" column="createTime" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, title, author, content, date_id, create_time,img_url,forward, content_title, content_subtitle
+  </sql>
+
+    <select id="get" resultMap="BaseMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM film
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectFilmByDate" resultMap="BaseMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM film
+        where date_id = #{dateId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.Film">
+        insert into film(title, author, content, date_id,create_time, img_url, forward, content_title, content_subtitle)
+          values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},#{dateId,jdbcType=VARCHAR},
+           #{createTime,jdbcType=INTEGER},#{imgUrl,jdbcType=VARCHAR}, #{forward,jdbcType=VARCHAR}, #{contentTitle,jdbcType=VARCHAR}, #{contentSubtitle,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertFilmSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.Film">
+        insert into film
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                title,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="imgUrl != null">
+                img_url,
+            </if>
+            <if test="forward != null">
+                forward,
+            </if>
+            <if test="contentTitle != null">
+                content_title,
+            </if>
+            <if test="contentSubtitle != null">
+                content_subtitle,
+            </if>
+            <if test="dateId != null">
+                date_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="imgUrl != null">
+                #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="forward != null">
+                #{forward,jdbcType=VARCHAR},
+            </if>
+            <if test="contentTitle != null">
+                #{contentTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="contentSubtitle != null">
+                #{contentSubtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="dateId != null">
+                #{dateId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+
+</mapper>

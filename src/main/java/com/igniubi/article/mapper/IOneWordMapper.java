@@ -21,7 +21,7 @@ public interface IOneWordMapper extends BaseMapper<Integer, OneWord> {
     @Override
     OneWord get(Integer var1);
 
-    void insertWordSelective(OneWord article);
+    void insertWordSelective(OneWord oneWord);
 
     OneWord selectWordByDate(@Param("dateId") String dateId);
 }

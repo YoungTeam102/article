@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OneWordServiceImpl implements IWordService {
 
-    private final Logger logger = LoggerFactory.getLogger(ArticleRest.class);
+    private final Logger logger = LoggerFactory.getLogger(OneWordServiceImpl.class);
 
     @Autowired
     IOneWordMapper oneWordMapper;

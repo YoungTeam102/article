@@ -20,7 +20,7 @@ public interface IQuestionMapper extends BaseMapper<Integer, Question> {
     @Override
     Question get(Integer var1);
 
-    void insertQuestionSelective(Question article);
+    void insertQuestionSelective(Question question);
 
     Question selectQuestionByDate(@Param("dateId") String dateId);
 }
