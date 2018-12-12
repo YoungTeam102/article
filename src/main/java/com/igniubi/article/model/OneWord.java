@@ -12,6 +12,8 @@ public class OneWord extends BaseEntity {
 
     private String word;
 
+    private String wordsInfo;
+
     private String dateId;
 
     private Integer createTime;

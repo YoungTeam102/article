@@ -7,11 +7,14 @@
         <result property="q_title" column="qTitle" jdbcType="VARCHAR"/>
         <result property="q_describe" column="qDescribe" jdbcType="VARCHAR"/>
         <result property="answers" column="answers" jdbcType="VARCHAR"/>
+        <result property="img_url" column="imgUrl" jdbcType="VARCHAR"/>
+        <result property="answerer" column="answerer" jdbcType="VARCHAR"/>
+        <result property="forward" column="forward" jdbcType="VARCHAR"/>
         <result property="date_id" column="dateId" jdbcType="VARCHAR"/>
         <result property="create_time" column="createTime" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List" >
-    id, q_title, q_describe, answers, date_id, create_time
+    id, q_title, q_describe, answers, date_id, create_time,img_url,answerer,forward
   </sql>
 
     <select id="get" resultMap="BaseMap">
@@ -29,8 +32,9 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.Question">
-        insert into question(q_title, q_describe, answers, date_id,create_time)
-          values (#{qTitle,jdbcType=VARCHAR}, #{qDescribe,jdbcType=VARCHAR}, #{answers,jdbcType=VARCHAR},#{dateId,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER})
+        insert into question(q_title, q_describe, answers, date_id,create_time,img_url,answerer,forward)
+          values (#{qTitle,jdbcType=VARCHAR}, #{qDescribe,jdbcType=VARCHAR}, #{answers,jdbcType=VARCHAR},#{dateId,jdbcType=VARCHAR}
+          , #{createTime,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, #{answerer,jdbcType=VARCHAR}, #{forward,jdbcType=VARCHAR})
     </insert>
 
     <insert id="insertQuestionSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.Question">
@@ -44,6 +48,15 @@
             </if>
             <if test="answers != null">
                 answers,
+            </if>
+            <if test="imgUrl != null">
+                img_url,
+            </if>
+            <if test="answerer != null">
+                answerer,
+            </if>
+            <if test="forward != null">
+                forward,
             </if>
             <if test="dateId != null">
                 date_id,
@@ -61,6 +74,15 @@
             </if>
             <if test="answers != null">
                 #{answers,jdbcType=VARCHAR},
+            </if>
+            <if test="imgUrl != null">
+                #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="answerer != null">
+                #{answerer,jdbcType=VARCHAR},
+            </if>
+            <if test="forward != null">
+                #{forward,jdbcType=VARCHAR},
             </if>
             <if test="dateId != null">
                 #{dateId,jdbcType=VARCHAR},

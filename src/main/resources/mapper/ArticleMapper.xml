@@ -5,13 +5,15 @@
     <resultMap id="BaseMap" type="com.igniubi.article.model.Article">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="title" column="title" jdbcType="VARCHAR"/>
-        <result property="auther" column="auther" jdbcType="VARCHAR"/>
+        <result property="author" column="author" jdbcType="VARCHAR"/>
         <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="img_url" column="imgUrl" jdbcType="VARCHAR"/>
+        <result property="forward" column="forward" jdbcType="VARCHAR"/>
         <result property="date_id" column="dateId" jdbcType="VARCHAR"/>
         <result property="create_time" column="createTime" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List" >
-    id, title, auther, content, date_id, create_time
+    id, title, author, content, date_id, create_time,img_url,forward
   </sql>
 
     <select id="get" resultMap="BaseMap">
@@ -29,8 +31,9 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.Article">
-        insert into article(title, auther, content, date_id,create_time)
-          values (#{title,jdbcType=VARCHAR}, #{auther,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},#{dateId,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER})
+        insert into article(title, author, content, date_id,create_time, img_url, forward)
+          values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},#{dateId,jdbcType=VARCHAR},
+           #{createTime,jdbcType=INTEGER},#{imgUrl,jdbcType=VARCHAR}, #{forward,jdbcType=VARCHAR})
     </insert>
 
     <insert id="insertArticleSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.Article">
@@ -39,11 +42,17 @@
             <if test="title != null">
                 title,
             </if>
-            <if test="auther != null">
-                auther,
+            <if test="author != null">
+                author,
             </if>
             <if test="content != null">
                 content,
+            </if>
+            <if test="imgUrl != null">
+                img_url,
+            </if>
+            <if test="forward != null">
+                forward,
             </if>
             <if test="dateId != null">
                 date_id,
@@ -56,11 +65,17 @@
             <if test="title != null">
                 #{title,jdbcType=VARCHAR},
             </if>
-            <if test="auther != null">
-                #{auther,jdbcType=VARCHAR},
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
             </if>
             <if test="content != null">
                 #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="imgUrl != null">
+                #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="forward != null">
+                #{forward,jdbcType=VARCHAR},
             </if>
             <if test="dateId != null">
                 #{dateId,jdbcType=VARCHAR},

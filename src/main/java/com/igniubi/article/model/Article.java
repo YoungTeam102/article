@@ -10,11 +10,15 @@ public class Article extends BaseEntity {
 
     private String title;
 
-    private String auther;
+    private String author;
 
     private String content;
 
     private String dateId;
 
     private Integer createTime;
+
+    private String forward;
+
+    private String imgUrl;
 }

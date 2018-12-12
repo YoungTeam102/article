@@ -6,11 +6,12 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="img_src" column="imgSrc" jdbcType="VARCHAR"/>
         <result property="word" column="word" jdbcType="VARCHAR"/>
+        <result property="words_info" column="wordsInfo" jdbcType="VARCHAR"/>
         <result property="date_id" column="dateId" jdbcType="VARCHAR"/>
         <result property="create_time" column="createTime" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List" >
-    id, img_src, word, date_id, create_time
+    id, img_src, word,words_info, date_id, create_time
   </sql>
 
     <select id="get" resultMap="BaseMap">
@@ -28,8 +29,8 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.OneWord">
-        insert into one_word(img_src, word, date_id,create_time)
-          values (#{imgSrc,jdbcType=VARCHAR}, #{word,jdbcType=VARCHAR},#{dateId,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER})
+        insert into one_word(img_src, word, words_info,date_id,create_time)
+          values (#{imgSrc,jdbcType=VARCHAR}, #{word,jdbcType=VARCHAR},#{wordsInfo,jdbcType=VARCHAR},#{dateId,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER})
     </insert>
 
     <insert id="insertWordSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.OneWord">
@@ -40,6 +41,9 @@
             </if>
             <if test="word != null">
                 word,
+            </if>
+            <if test="wordsInfo != null">
+                words_info,
             </if>
             <if test="dateId != null">
                 date_id,
@@ -54,6 +58,9 @@
             </if>
             <if test="word != null">
                 #{word,jdbcType=VARCHAR},
+            </if>
+            <if test="wordsInfo != null">
+                #{wordsInfo,jdbcType=VARCHAR},
             </if>
             <if test="dateId != null">
                 #{dateId,jdbcType=VARCHAR},

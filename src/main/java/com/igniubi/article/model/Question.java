@@ -13,6 +13,12 @@ public class Question extends BaseEntity {
 
     private String answers;
 
+    private String answerer;
+
+    private String forward;
+
+    private String imgUrl;
+
     private String dateId;
 
     private Integer createTime;
@@ -63,5 +69,29 @@ public class Question extends BaseEntity {
 
     public void setCreateTime(Integer createTime) {
         this.createTime = createTime;
+    }
+
+    public String getAnswerer() {
+        return answerer;
+    }
+
+    public void setAnswerer(String answerer) {
+        this.answerer = answerer;
+    }
+
+    public String getForward() {
+        return forward;
+    }
+
+    public void setForward(String forward) {
+        this.forward = forward;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
