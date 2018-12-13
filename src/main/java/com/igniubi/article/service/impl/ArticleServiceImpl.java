@@ -1,5 +1,6 @@
 package com.igniubi.article.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.igniubi.article.mapper.IArticleMapper;
 import com.igniubi.article.model.Article;
 import com.igniubi.article.restapi.ArticleRest;
@@ -37,6 +38,7 @@ public class ArticleServiceImpl implements IArticleService {
            throw new IGNBException(402, "article is exist");
         }
         article = BeanUtils.copyBeans(Article.class , req);
+        article.setContent(req.getContent()==null ? "":JSONObject.toJSONString(req.getContent()));
         article.setDateId(date);
         article.setCreateTime(DateUtil.getCurrentTimeSeconds());
         try{

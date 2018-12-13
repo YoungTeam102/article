@@ -1,5 +1,6 @@
 package com.igniubi.article.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.igniubi.article.mapper.ISerialsMapper;
 import com.igniubi.article.model.Serials;
 import com.igniubi.article.service.ISerialsService;
@@ -37,6 +38,7 @@ public class SerialsServiceImpl implements ISerialsService {
         }
         serials = BeanUtils.copyBeans(Serials.class , req);
         serials.setDateId(date);
+        serials.setContent(req.getContent()==null ? "":JSONObject.toJSONString(req.getContent()));
         serials.setCreateTime(DateUtil.getCurrentTimeSeconds());
         try{
             serialsMapper.insertSerialsSelective(serials);

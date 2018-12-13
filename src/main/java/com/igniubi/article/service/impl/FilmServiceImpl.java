@@ -1,5 +1,6 @@
 package com.igniubi.article.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.igniubi.article.mapper.IFilmMapper;
 import com.igniubi.article.model.Film;
 import com.igniubi.article.service.IFilmService;
@@ -36,6 +37,7 @@ public class FilmServiceImpl implements IFilmService {
            throw new IGNBException(402, "article is exist");
         }
         film = BeanUtils.copyBeans(Film.class , req);
+        film.setContent(req.getContent()==null ? "":JSONObject.toJSONString(req.getContent()));
         film.setDateId(date);
         film.setCreateTime(DateUtil.getCurrentTimeSeconds());
         try{

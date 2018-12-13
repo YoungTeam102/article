@@ -1,6 +1,7 @@
 package com.igniubi.article.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.igniubi.article.mapper.IMusicMapper;
 import com.igniubi.article.model.Music;
 import com.igniubi.article.service.IMusicService;
@@ -38,6 +39,7 @@ public class MusicServiceImpl implements IMusicService {
         }
         music = BeanUtils.copyBeans(Music.class , req);
         music.setDateId(date);
+        music.setContent(req.getContent()==null ? "":JSONObject.toJSONString(req.getContent()));
         music.setMusicInfo(req.getMusicInfo()==null ? "":JSON.toJSONString(req.getMusicInfo()));
         music.setCreateTime(DateUtil.getCurrentTimeSeconds());
         try{
