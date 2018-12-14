@@ -33,8 +33,8 @@ public class FilmServiceImpl implements IFilmService {
         String date = DateUtil.getToday("YYYYMMdd");
         Film film = filmMapper.selectFilmByDate(date);
         if(film != null){
-            logger.info("addFilm , article is exist, dateId is {}", date);
-           throw new IGNBException(402, "article is exist");
+            logger.info("addFilm , film is exist, dateId is {}", date);
+           throw new IGNBException(402, "music is exist");
         }
         film = BeanUtils.copyBeans(Film.class , req);
         film.setContent(req.getContent()==null ? "":JSONObject.toJSONString(req.getContent()));

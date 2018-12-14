@@ -33,8 +33,8 @@ public class SerialsServiceImpl implements ISerialsService {
         String date = DateUtil.getToday("YYYYMMdd");
         Serials serials = serialsMapper.selectSerialsByDate(date);
         if(serials != null){
-            logger.info("addSerials , article is exist, dateId is {}", date);
-           throw new IGNBException(402, "article is exist");
+            logger.info("addSerials , serials is exist, dateId is {}", date);
+           throw new IGNBException(402, "serials is exist");
         }
         serials = BeanUtils.copyBeans(Serials.class , req);
         serials.setDateId(date);

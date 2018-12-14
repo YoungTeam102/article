@@ -23,4 +23,6 @@ public class Serials extends BaseEntity {
     private String forward;
 
     private String imgUrl;
+
+    private Integer number;
 }

@@ -34,8 +34,8 @@ public class MusicServiceImpl implements IMusicService {
         String date = DateUtil.getToday("YYYYMMdd");
         Music music = musicMapper.selectMusicByDate(date);
         if(music != null){
-            logger.info("addMusic , article is exist, dateId is {}", date);
-           throw new IGNBException(402, "article is exist");
+            logger.info("addMusic , music is exist, dateId is {}", date);
+           throw new IGNBException(402, "music is exist");
         }
         music = BeanUtils.copyBeans(Music.class , req);
         music.setDateId(date);

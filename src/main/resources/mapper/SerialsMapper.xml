@@ -8,13 +8,14 @@
         <result property="author" column="author" jdbcType="VARCHAR"/>
         <result property="content" column="content" jdbcType="VARCHAR"/>
         <result property="serial_id" column="serialId" jdbcType="INTEGER"/>
+        <result property="number" column="number" jdbcType="INTEGER"/>
         <result property="img_url" column="imgUrl" jdbcType="VARCHAR"/>
         <result property="forward" column="forward" jdbcType="VARCHAR"/>
         <result property="date_id" column="dateId" jdbcType="VARCHAR"/>
         <result property="create_time" column="createTime" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List" >
-    id, title, author, content, date_id, create_time,img_url,forward,serial_id
+    id, title, author, content, date_id, create_time,img_url,forward,serial_id,number
   </sql>
 
     <select id="get" resultMap="BaseMap">
@@ -32,9 +33,9 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.Serials">
-        insert into serials(title, author, content, date_id,create_time, img_url, forward, serial_id)
+        insert into serials(title, author, content, date_id,create_time, img_url, forward, serial_id,number)
           values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},#{dateId,jdbcType=VARCHAR},
-           #{createTime,jdbcType=INTEGER},#{imgUrl,jdbcType=VARCHAR}, #{forward,jdbcType=VARCHAR},  #{serialId,jdbcType=INTEGER})
+           #{createTime,jdbcType=INTEGER},#{imgUrl,jdbcType=VARCHAR}, #{forward,jdbcType=VARCHAR},  #{serialId,jdbcType=INTEGER},  #{number,jdbcType=INTEGER})
     </insert>
 
     <insert id="insertSerialsSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.igniubi.article.model.Serials">
@@ -64,6 +65,9 @@
             <if test="serialId != null">
                 serial_id,
             </if>
+            <if test="number != null">
+                number,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="title != null">
@@ -89,6 +93,9 @@
             </if>
             <if test="serialId != null">
                 #{serialId,jdbcType=INTEGER},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>

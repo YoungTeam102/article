@@ -35,7 +35,7 @@ public class QuestionServiceImpl implements IQuestionService {
         Question question = questionMapper.selectQuestionByDate(date);
         if(question != null){
             logger.info("addQuestion , question is exist, dateId is {}", date);
-           throw new IGNBException(402, "article is exist");
+           throw new IGNBException(402, "question is exist");
         }
         question = BeanUtils.copyBeans(Question.class , req);
         question.setAnswers(req.getAnswers() == null ? "" : JSON.toJSONString(req.getAnswers()));

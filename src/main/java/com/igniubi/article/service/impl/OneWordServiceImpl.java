@@ -33,8 +33,8 @@ public class OneWordServiceImpl implements IWordService {
         String date = DateUtil.getToday("YYYYMMdd");
         OneWord word = oneWordMapper.selectWordByDate(date);
         if(word != null){
-            logger.info("addOneWord , OneWord is exist, dateId is {}", date);
-           throw new IGNBException(402, "OneWord is exist");
+            logger.info("addOneWord , word is exist, dateId is {}", date);
+           throw new IGNBException(402, "word is exist");
         }
         word = BeanUtils.copyBeans(OneWord.class , req);
         word.setDateId(date);
