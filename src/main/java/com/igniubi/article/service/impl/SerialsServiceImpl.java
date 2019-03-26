@@ -9,10 +9,18 @@ import com.igniubi.common.utils.BeanUtils;
 import com.igniubi.common.utils.DateUtil;
 import com.igniubi.model.CommonRsp;
 import com.igniubi.model.article.req.SerialsReq;
+import com.igniubi.rest.client.RestTempalteUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
 public class SerialsServiceImpl implements ISerialsService {
@@ -48,4 +56,6 @@ public class SerialsServiceImpl implements ISerialsService {
         }
         return rsp;
     }
+
+
 }
