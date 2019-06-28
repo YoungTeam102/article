@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 public class ArticleRest {
@@ -30,7 +31,7 @@ public class ArticleRest {
     }
 
     @RequestMapping("/getIndex")
-    public List<IndexRsp> getIndex(@RequestBody @Validated ArticleReq req){
+    public List<IndexRsp> getIndex(@RequestBody @Validated ArticleReq req) throws ExecutionException, InterruptedException {
 
         return articleService.getIndex(req);
     }
