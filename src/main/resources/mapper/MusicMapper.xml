@@ -19,6 +19,9 @@
     <sql id="Base_Column_List" >
     id, title, author, content, date_id, create_time,img_url,forward,content_title,cover_img,music_url,music_info
   </sql>
+    <sql id="No_text_List" >
+    id, title, author, date_id, create_time,img_url,forward,content_title,cover_img,music_url,music_info
+  </sql>
 
     <select id="get" resultMap="BaseMap">
         SELECT
@@ -29,7 +32,7 @@
 
     <select id="selectMusicByDate" resultMap="BaseMap">
         SELECT
-        <include refid="Base_Column_List"></include>
+        <include refid="No_text_List"></include>
         FROM music
         where date_id = #{dateId,jdbcType=VARCHAR}
     </select>

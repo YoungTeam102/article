@@ -17,6 +17,9 @@
     <sql id="Base_Column_List" >
     id, title, author, content, date_id, create_time,img_url,forward, content_title, content_subtitle
   </sql>
+    <sql id="No_Text_List" >
+    id, title, author, date_id, create_time,img_url,forward, content_title, content_subtitle
+  </sql>
 
     <select id="get" resultMap="BaseMap">
         SELECT
@@ -27,7 +30,7 @@
 
     <select id="selectFilmByDate" resultMap="BaseMap">
         SELECT
-        <include refid="Base_Column_List"></include>
+        <include refid="No_Text_List"></include>
         FROM film
         where date_id = #{dateId,jdbcType=VARCHAR}
     </select>

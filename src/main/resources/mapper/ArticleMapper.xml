@@ -15,6 +15,9 @@
     <sql id="Base_Column_List" >
     id, title, author, content, date_id, create_time,img_url,forward
   </sql>
+    <sql id="NO_Text_List" >
+    id, title, author, date_id, create_time,img_url,forward
+  </sql>
 
     <select id="get" resultMap="BaseMap">
         SELECT
@@ -25,7 +28,7 @@
 
     <select id="selectArticleByDate" resultMap="BaseMap">
         SELECT
-        <include refid="Base_Column_List"></include>
+        <include refid="NO_Text_List"></include>
         FROM article
         where date_id = #{dateId,jdbcType=VARCHAR}
     </select>
